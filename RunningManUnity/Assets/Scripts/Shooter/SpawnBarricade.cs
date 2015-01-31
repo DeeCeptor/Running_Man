@@ -3,7 +3,14 @@ using System.Collections;
 
 public class SpawnBarricade : ShooterAbility {
 
-    public override void CastAbility()
+    public SpawnBarricade(Shooter shooter)
+        : base(shooter)
+    {
+        
+    }
+
+
+    protected override void CastAbility()
     {
         base.CastAbility();
 

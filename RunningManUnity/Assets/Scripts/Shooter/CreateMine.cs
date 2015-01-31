@@ -3,11 +3,16 @@ using System.Collections;
 
 public class CreateMine : ShooterAbility {
 
-    public override void CastAbility()
+    public CreateMine(Shooter shooter) : base(shooter)
+    {
+        
+    }
+
+    protected override void CastAbility()
     {
         base.CastAbility();
 
-        // Fire bullet
+        // Mine
         GameObject go = (GameObject)Instantiate(Resources.Load("Mine"), shooter.getMousePosition(), Quaternion.identity);
 
         // Set damage

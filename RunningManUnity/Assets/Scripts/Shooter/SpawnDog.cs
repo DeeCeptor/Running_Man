@@ -3,7 +3,14 @@ using System.Collections;
 
 public class SpawnDog : ShooterAbility {
 
-    public override void CastAbility()
+    public SpawnDog(Shooter shooter)
+        : base(shooter)
+    {
+        
+    }
+
+
+    protected override void CastAbility()
     {
         base.CastAbility();
 

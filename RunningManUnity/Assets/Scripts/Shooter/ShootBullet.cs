@@ -5,8 +5,14 @@ public class ShootBullet : ShooterAbility
 {
     public bool angledBullets = false;
 
+    public ShootBullet(Shooter shooter)
+        : base(shooter)
+    {
+        
+    }
 
-    public override void CastAbility()
+
+    protected override void CastAbility()
     {
         base.CastAbility();
 

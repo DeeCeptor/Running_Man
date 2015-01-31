@@ -20,16 +20,21 @@ public class Shooter : MonoBehaviour
     ShooterAbility rightClickAbility;
 
     // All abilities
-    ShootBullet shootBullet = new ShootBullet();
-    SpawnDog spawnDog = new SpawnDog();
-    SpawnBarricade spawnBarricade = new SpawnBarricade();
-    CreateMine createMine = new CreateMine();
+    ShootBullet shootBullet;
+    SpawnDog spawnDog;
+    SpawnBarricade spawnBarricade;
+    CreateMine createMine;
 	
 	void Start () 
 	{
 		runner = GameObject.Find("Runner");
 
         shootBullet.abilityName = "Fire Bullet";
+
+        shootBullet = new ShootBullet(this);
+        spawnDog = new SpawnDog(this);
+        spawnBarricade = new SpawnBarricade(this);
+        createMine = new CreateMine(this);
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
