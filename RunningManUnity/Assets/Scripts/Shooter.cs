@@ -9,10 +9,11 @@ public class Shooter : MonoBehaviour
 	float curEnergy = 0;
 
 
+
 	
 	void Start () 
 	{
-		
+
 	}
 
 	
@@ -36,7 +37,9 @@ public class Shooter : MonoBehaviour
 	{
 		if(canUseAbility(1, 1))
 		{
-
+			// Fire bullet
+			GameObject go = (GameObject)Instantiate(Resources.Load("Bullet"), getMousePosition(), Quaternion.identity);
+			go.rigidbody2D.velocity = new Vector2(5, 0);
 		}
 	}
 
@@ -59,11 +62,20 @@ public class Shooter : MonoBehaviour
 	}
 
 
+	public Vector3 getMousePosition()
+	{
+		Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		position.z = 0;
+		return position;
+		//	new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+	}
+
+
 	// Checks the distance between the mouse and the runner man.
 	// Returns true if mouse is at least distance away from runner
 	public bool canUseAbility(float distance, float abilityCost)
 	{
-		if (Vector3.Distance(Input.mousePosition, Vector2.zero) < distance)
+		if (Vector3.Distance(getMousePosition(), Vector2.zero) < distance)
 		{
 			return false;
 		}
