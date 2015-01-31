@@ -83,13 +83,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter2D(Collision2D otherCollider)
+    void OnCollisionStay2D(Collision2D otherCollider)
     {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
             grounded = true; //wall jumping ahoy!
         }
+    }
 
+    void OnCollisionEnter2D(Collision2D otherCollider)
+    {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("healthpack"))
         //separate block to avoid screwing with shield code
         {
