@@ -24,7 +24,7 @@ public class Shooter : MonoBehaviour
     ShooterAbility rightClickAbility;
     LinkedList<ShooterAbility> abilityList = new LinkedList<ShooterAbility>();
 
-    // All abilities
+    // Left and middle click abilities
     ShootBullet shootBullet;
     SpawnDog spawnDog;
     SpawnBarricade spawnBarricade;
@@ -34,6 +34,8 @@ public class Shooter : MonoBehaviour
     NoRightClick noRightClick;
     ShrapnelBlast shrapnelBlast;
     Explosives explosives;
+    StopCamera stopCamera;
+
 	
 	void Start () 
 	{
@@ -49,6 +51,8 @@ public class Shooter : MonoBehaviour
         noRightClick = new NoRightClick(this);
         shrapnelBlast = new ShrapnelBlast(this);
         explosives = new Explosives(this);
+        stopCamera = new StopCamera(this);
+
 
         abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
@@ -56,7 +60,7 @@ public class Shooter : MonoBehaviour
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
-        rightClickAbility = noRightClick;
+        rightClickAbility = stopCamera;
 	}
 
 	
