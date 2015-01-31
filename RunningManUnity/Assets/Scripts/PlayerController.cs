@@ -4,7 +4,7 @@ using System;
 
 public class PlayerController : MonoBehaviour {
 
-    float walkForce = 5f;
+    float walkForce = 5.0f;
     float jumpForce = 10.0f;
     bool grounded = true;
     int health = 1000;
@@ -16,9 +16,14 @@ public class PlayerController : MonoBehaviour {
     bool invuln = false;
     int abilitycount = 0;
     DateTime wait;
+    public GameObject plane;
+    public Texture2D heightmap;
+    public Vector3 size = new Vector3(100, 10, 100);
+    public Animator Anim;
+
 	// Use this for initialization
 	void Start () {
-	
+        Anim = gameObject.GetComponent<Animator>();
 	}
     void OnGUI()
     {
@@ -30,31 +35,67 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.RightArrow))
         {
             rigidbody2D.velocity = new Vector2(walkForce, rigidbody2D.velocity.y);
+            if (left &&!right)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.z *= -1;
+                transform.localScale = theScale;
+            }
             right = true;
             left = false;
+            Anim.SetBool("isRunning", true);
+            Anim.SetBool("isLanding", false);
+            Anim.SetBool("isJumping", false);
+            Anim.SetBool("isIdle", false);
+            Anim.SetBool("isSliding", false);
+
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             rigidbody2D.velocity = new Vector2(-1.0f * walkForce, rigidbody2D.velocity.y);
+            if (right &&!left)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.z *= -1;
+                transform.localScale = theScale;
+            }
             left = true;
             right = false;
+            
+            Anim.SetBool("isRunning", true);
+            Anim.SetBool("isLanding", false);
+            Anim.SetBool("isJumping", false);
+            Anim.SetBool("isIdle", false);
+            Anim.SetBool("isSliding", false);
+
         }
         else
         {
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+            Anim.SetBool("isRunning", false);
+            Anim.SetBool("isLanding", false);
+            Anim.SetBool("isJumping", false);
+            Anim.SetBool("isIdle", true);
+            Anim.SetBool("isSliding", false);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            Debug.Log("jumping");
             if (grounded == true)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            }
+                Anim.SetBool("isRunning", false);
+                Anim.SetBool("isLanding", false);
+                Anim.SetBool("isJumping", true);
+                Anim.SetBool("isIdle", false);
+                Anim.SetBool("isSliding", false);
+           }
         }
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            if (grounded == true)
+            if (grounded)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce); //make it more responsive, terminate jump on release
                 grounded = false;
@@ -63,6 +104,14 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
+            if (grounded)
+            {
+                Anim.SetBool("isRunning", false);
+                Anim.SetBool("isLanding", false);
+                Anim.SetBool("isJumping", false);
+                Anim.SetBool("isIdle", false);
+                Anim.SetBool("isSliding", true);
+            }
             rigidbody2D.AddForce(new Vector2(rigidbody2D.velocity.x, -1.5f*jumpForce));
         }
 
@@ -81,6 +130,18 @@ public class PlayerController : MonoBehaviour {
         {
             invuln = false;
         }
+
+        /******
+         * CODE FOR TEXTURE SWITCHING BELOW
+         * ABANDON HOPE ALL YE WHO ENTER HERE
+         */
+
+      //  plane = GameObject.Find("background");
+        int x = (int)transform.position.x;
+        int y = (int)transform.position.y;
+        //float currcolor = heightmap.GetPixel(x, y).grayscale;
+        //Debug.Log(currcolor);
+
 	}
 
     void OnCollisionStay2D(Collision2D otherCollider)
@@ -93,6 +154,12 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D otherCollider)
     {
+
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
+        {
+            grounded = true; 
+        }
+
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("healthpack"))
         //separate block to avoid screwing with shield code
         {
