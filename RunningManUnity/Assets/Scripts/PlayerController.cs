@@ -96,6 +96,12 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("shield"))
+        {
+            shield = true;
+            shieldhealth = 250;
+        }
+
     }
 
     void callAbility()
@@ -146,9 +152,9 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void getPower(int AbilityID, int count) {
-        Ability = AbilityID;
-        abilitycount = count;
+    void getPower(int[] powerinfo) {
+        Ability = powerinfo[0];
+        abilitycount = powerinfo[1];
     }
 
 }
