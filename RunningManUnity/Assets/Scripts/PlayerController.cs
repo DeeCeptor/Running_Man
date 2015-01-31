@@ -19,10 +19,15 @@ public class PlayerController : MonoBehaviour {
         {
             rigidbody2D.velocity = new Vector2(walkForce, rigidbody2D.velocity.y);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody2D.velocity = new Vector2(-1.0f*walkForce, rigidbody2D.velocity.y);
+            rigidbody2D.velocity = new Vector2(-1.0f * walkForce, rigidbody2D.velocity.y);
         }
+        else
+        {
+            //rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+        }
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             if (grounded == true)
