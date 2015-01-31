@@ -44,11 +44,18 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (grounded == true)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            if (grounded == true)
+            {
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce);
                 grounded = false;
             }
         }
