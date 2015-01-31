@@ -48,7 +48,9 @@ public class Shooter : MonoBehaviour
 	{
 		if(canUseAbility(1, 1))
 		{
-			
+			// Fire bullet
+			GameObject go = (GameObject)Instantiate(Resources.Load("Bullet"), getMousePosition(), Quaternion.identity);
+			go.rigidbody2D.velocity = new Vector2(5, 0);
 		}
 	}
 

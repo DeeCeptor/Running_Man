@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class DamageOnHit : MonoBehaviour {
-
+	public float damageOnHit = 10;
 
 	void Start () {
 	
