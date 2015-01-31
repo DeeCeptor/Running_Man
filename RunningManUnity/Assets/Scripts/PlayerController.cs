@@ -38,10 +38,11 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-    void OnTriggerEnter2D(Collider2D otherCollider)
+    void OnCollisionEnter2D(Collision2D otherCollider)
     {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
+            Debug.Log("Collding");
             grounded = true;
         }
     }
