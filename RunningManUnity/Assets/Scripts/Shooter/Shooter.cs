@@ -10,6 +10,7 @@ public class Shooter : MonoBehaviour
     int curEnergy = 0;
     int rechargeRate = 500;
     int normalRechargeRate = 500;
+    float shooterTimeScale = 1.0f;  // Can be changed for slow motion
 
     [HideInInspector]
 	public GameObject runner;
@@ -26,6 +27,9 @@ public class Shooter : MonoBehaviour
     SpawnDog spawnDog;
     SpawnBarricade spawnBarricade;
     CreateMine createMine;
+
+    // Powerup abilities
+    ShrapnelBlast shrapnelBlast;
 	
 	void Start () 
 	{
@@ -36,13 +40,16 @@ public class Shooter : MonoBehaviour
         spawnBarricade = new SpawnBarricade(this);
         createMine = new CreateMine(this);
 
+        // Right click powerup abilities
+        shrapnelBlast = new ShrapnelBlast(this);
+
         abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
         abilityList.AddFirst(spawnDog);
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
-        rightClickAbility = spawnDog;
+        rightClickAbility = shrapnelBlast;
 	}
 
 	
@@ -51,7 +58,7 @@ public class Shooter : MonoBehaviour
         // Update energy
         if (curEnergy != maxEnergy)
         {
-            curEnergy = Mathf.Min((int) (curEnergy + (Time.deltaTime * rechargeRate)), maxEnergy);
+            curEnergy = Mathf.Min((int)(curEnergy + (Time.deltaTime * rechargeRate) * shooterTimeScale), maxEnergy);
         }
 
         // Check scroll wheel
@@ -69,7 +76,16 @@ public class Shooter : MonoBehaviour
 		}
 		if (Input.GetMouseButtonDown(1))    // Right click
 		{
-            rightClickAbility.Cast();
+            if (rightClickAbility != null)
+            {
+                rightClickAbility.Cast();
+
+                // Remove the ability if we're out of casts
+                if (rightClickAbility.usesLeft <= 0)
+                {
+                    rightClickAbility = null;
+                }
+            }
 		}
 		if (Input.GetMouseButtonDown(2))    // Middle click
 		{
@@ -136,6 +152,6 @@ public class Shooter : MonoBehaviour
 		GUI.Label(new Rect(Screen.width - 80, 10, 100, 20), "" + curEnergy + "/" + maxEnergy);
         GUI.Label(new Rect(Screen.width - 120, 30, 100, 20), "" + leftClickAbility.abilityName);
         GUI.Label(new Rect(Screen.width - 80, 50, 100, 20), "" + middleClickAbility.abilityName);
-        GUI.Label(new Rect(Screen.width - 30, 30, 100, 20), "" + rightClickAbility.abilityName);
+        GUI.Label(new Rect(Screen.width - 30, 30, 100, 20), "" + rightClickAbility.abilityName + " " + rightClickAbility.usesLeft);
 	}
 }

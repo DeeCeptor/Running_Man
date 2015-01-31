@@ -7,6 +7,8 @@ public class CreateMine : ShooterAbility {
     {
         this.abilityName = "Mine";
         energyCost = 300;
+
+        damage = 10;
     }
 
     protected override void CastAbility()

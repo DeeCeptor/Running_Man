@@ -5,6 +5,7 @@ public class DamageOnHit : MonoBehaviour
 {
 	public float damageOnHit = 10;
     public bool destroyOnHit = true;
+    public bool destroyOnGround = false;
 
 
 	void Start () {
@@ -25,9 +26,12 @@ public class DamageOnHit : MonoBehaviour
 
             if (destroyOnHit)
             {
-                Debug.Log("Hit runner with " + damageOnHit);
                 Destroy(this.gameObject);
             }
 		}
+        else if (destroyOnGround && coll.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
+        {
+            Destroy(this.gameObject);
+        }
 	}
 }
