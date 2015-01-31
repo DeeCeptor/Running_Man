@@ -36,8 +36,9 @@ public class Shooter : MonoBehaviour
         spawnBarricade = new SpawnBarricade(this);
         createMine = new CreateMine(this);
 
+        abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
-        abilityList.AddFirst(createMine);
+        abilityList.AddFirst(spawnDog);
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
