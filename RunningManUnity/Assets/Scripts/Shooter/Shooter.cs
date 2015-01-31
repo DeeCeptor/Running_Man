@@ -115,7 +115,7 @@ public class Shooter : MonoBehaviour
 	// Returns true if mouse is at least distance away from runner
 	public bool canUseAbility(float distance, float abilityCost)
 	{
-		if (curEnergy >= abilityCost && Vector3.Distance(getMousePosition(), Vector2.zero) > distance)
+		if (curEnergy >= abilityCost && (Vector3.Distance(getMousePosition(), runner.transform.position) > distance))
 		{
 			return true;
 		}
