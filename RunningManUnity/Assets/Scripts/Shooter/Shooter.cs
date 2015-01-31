@@ -53,7 +53,7 @@ public class Shooter : MonoBehaviour
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
-        rightClickAbility = explosives;
+        rightClickAbility = noRightClick;
 	}
 
 	
@@ -74,7 +74,7 @@ public class Shooter : MonoBehaviour
                 scrollAbilityDown();
         }
 
-		if (Input.GetMouseButtonDown(0))	// Left click
+		if (Input.GetMouseButton(0))	// Left click
 		{
             leftClickAbility.Cast();
 		}
@@ -87,7 +87,7 @@ public class Shooter : MonoBehaviour
                 // Remove the ability if we're out of casts
                 if (rightClickAbility.usesLeft <= 0)
                 {
-                    rightClickAbility = noRightClick;
+                    changeRightClickAbility(noRightClick);
                 }
             }
 		}
@@ -120,7 +120,10 @@ public class Shooter : MonoBehaviour
             middleClickAbility = abilityList.Last.Value;
         }
     }
-
+    public void changeRightClickAbility(ShooterAbility newAbility)
+    {
+        rightClickAbility = newAbility;
+    }
 
 
 	public Vector3 getMousePosition()
