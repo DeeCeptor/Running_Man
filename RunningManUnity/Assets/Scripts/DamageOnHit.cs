@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DamageOnHit : MonoBehaviour {
 	public float damageOnHit = 10;
+    public bool destroyOnHit = true;
 
 	void Start () {
 	
@@ -18,9 +19,13 @@ public class DamageOnHit : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Runner")
 		{
-			Debug.Log("Hit runner with " + damageOnHit);
-			coll.gameObject.SendMessage("TakeHit", 10);
+			coll.gameObject.SendMessage("TakeHit", 10f);
 
+            if (destroyOnHit)
+            {
+                Debug.Log("Hit runner with " + damageOnHit);
+                Destroy(this.gameObject);
+            }
 		}
 	}
 }

@@ -5,19 +5,27 @@ using System.Collections;
 public class Shooter : MonoBehaviour 
 {
 	// Energy is what the shooter expends to cast abilities to kill the runner
-	int maxEnergy = 100;
+	float maxEnergy = 100;
 	float curEnergy = 0;
+    float rechargeRate = 0.2f;
 
-
+	GameObject runner;
 
 	
 	void Start () 
 	{
-
+		runner = GameObject.Find("Runner");
 	}
 
 	
-	void Update () {
+	void Update () 
+    {
+        // Update energy
+        if (curEnergy != maxEnergy)
+        {
+            curEnergy = Mathf.Min(curEnergy + rechargeRate, maxEnergy);
+        }
+
 		if (Input.GetMouseButtonDown(0))	// Left click
 		{
 			fireLeftClick();
@@ -35,22 +43,34 @@ public class Shooter : MonoBehaviour
 
 	public void fireLeftClick()
 	{
-		if(canUseAbility(1, 1))
+		if(canUseAbility(10, 10))
 		{
+            curEnergy -= 10;
+
 			// Fire bullet
 			GameObject go = (GameObject)Instantiate(Resources.Load("Bullet"), getMousePosition(), Quaternion.identity);
-			go.rigidbody2D.velocity = new Vector2(5, 0);
+			Vector3 velocity = 5 * Vector3.Normalize(runner.transform.position - getMousePosition());
+            velocity.y = 0;
+            velocity.z = 0;
+            go.rigidbody2D.velocity = velocity;
+			DamageOnHit dmg = go.GetComponent<DamageOnHit>();
+            dmg.damageOnHit = 10;
 		}
 	}
 
 
 	public void fireRightClick()
 	{
-		if(canUseAbility(1, 1))
+        if (canUseAbility(10, 10))
 		{
+            curEnergy -= 10;
+
 			// Fire bullet
 			GameObject go = (GameObject)Instantiate(Resources.Load("Bullet"), getMousePosition(), Quaternion.identity);
-			go.rigidbody2D.velocity = new Vector2(5, 0);
+            DamageOnHit dmg = go.GetComponent<DamageOnHit>();
+            dmg.damageOnHit = 10;
+
+            go.rigidbody2D.velocity = 5 * Vector3.Normalize(runner.transform.position - getMousePosition());
 		}
 	}
 
@@ -77,12 +97,12 @@ public class Shooter : MonoBehaviour
 	// Returns true if mouse is at least distance away from runner
 	public bool canUseAbility(float distance, float abilityCost)
 	{
-		if (Vector3.Distance(getMousePosition(), Vector2.zero) < distance)
+		if (curEnergy >= abilityCost && Vector3.Distance(getMousePosition(), Vector2.zero) > distance)
 		{
-			return false;
+			return true;
 		}
 		else
-			return true;
+			return false;
 	}
 
 
