@@ -7,7 +7,7 @@ public class ShooterAbility
     protected Shooter shooter;
     public int energyCost;
     public string abilityName;
-    public int damage;
+    public int damage = 5;
     [HideInInspector]
     public float speed = 5;
     protected bool limitedUses = false;
@@ -51,7 +51,7 @@ public class ShooterAbility
 
     private bool checkToCast()
     {
-        if (limitedUses && usesLeft > 0)
+        if (limitedUses && usesLeft > 0 && shooter.canUseAbility(7, energyCost))
         {
             if (usesLeft > 0)
                 return true;

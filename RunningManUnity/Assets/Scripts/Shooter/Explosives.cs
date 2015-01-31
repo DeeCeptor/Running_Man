@@ -14,6 +14,8 @@ public class Explosives : ShooterAbility {
         this.abilityName = "Explosives";
         this.limitedUses = true;
         this.usesLeft = 3;
+
+        damage = 100;
     }
 
 

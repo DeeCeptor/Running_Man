@@ -27,10 +27,10 @@ public class ExplosiveCountdown : MonoBehaviour {
         {
             Debug.Log("Boom");
 
-            Vector2 dirOfPlayer = runner.transform.position = this.transform.position;
+            Vector2 dirOfPlayer = runner.transform.position - this.transform.position;
 
             RaycastHit2D hits = Physics2D.Raycast(this.transform.position, dirOfPlayer, blastRadius);
-            if (hits != null && hits.transform.gameObject.tag == "Runner")
+            if (hits.transform != null && hits.transform.gameObject.tag == "Runner")
             {
                 hits.transform.gameObject.SendMessage("TakeHit", damage);
                 Debug.Log("Hit player");

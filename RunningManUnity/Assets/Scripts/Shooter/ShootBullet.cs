@@ -10,6 +10,8 @@ public class ShootBullet : ShooterAbility
     {
         this.abilityName = "Bullet";
         energyCost = 300;
+
+        damage = 10;
     }
 
 
