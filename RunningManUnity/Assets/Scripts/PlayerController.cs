@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
     float walkForce = 2.5f;
     float jumpForce = 5.0f;
     bool grounded = true;
-    //keyAbility Ability;
+    int health = 1000;
+    //Ability Ability;
 	// Use this for initialization
 	void Start () {
 	
@@ -50,5 +51,22 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Collding");
             grounded = true;
         }
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("healthpack"))
+        {
+            health = health + 100;
+            if (health > 1000)
+            {
+                health = 1000;
+            }
+        }
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("bullet"))
+        {
+            TakeHit();
+        }
     }
+
+    void TakeHit(int damage) {
+        health = health - damage;
+    }
+
 }
