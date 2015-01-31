@@ -29,6 +29,11 @@ public class ShootBullet : ShooterAbility
 
         // Set speed of bullet
         Vector3 velocity = speed * Vector3.Normalize(shooter.runner.transform.position - shooter.getMousePosition());
+        if (!angledBullets)
+        {
+            velocity.y = 0;
+        }
+
         go.rigidbody2D.velocity = velocity;
 
         // Rotate to look towards player

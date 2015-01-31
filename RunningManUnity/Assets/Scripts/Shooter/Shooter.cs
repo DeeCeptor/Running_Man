@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 // Handles mouse controls
 public class Shooter : MonoBehaviour 
@@ -15,6 +16,7 @@ public class Shooter : MonoBehaviour
     [HideInInspector]
 	public GameObject runner;
 
+    Slider energyBar;   // Shows how much energy is remaining
 
     // Abilities
     ShooterAbility leftClickAbility;
@@ -36,6 +38,7 @@ public class Shooter : MonoBehaviour
 	void Start () 
 	{
 		runner = GameObject.Find("Runner");
+        energyBar = GameObject.Find("EnergyBar").GetComponent<Slider>();
 
         shootBullet = new ShootBullet(this);
         spawnDog = new SpawnDog(this);
@@ -95,6 +98,10 @@ public class Shooter : MonoBehaviour
 		{
             middleClickAbility.Cast();
 		}
+
+
+        // Set the slider
+        energyBar.normalizedValue = (float)curEnergy / maxEnergy;
 	}
 
 
