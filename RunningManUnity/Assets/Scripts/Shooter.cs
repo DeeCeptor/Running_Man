@@ -5,9 +5,9 @@ using System.Collections;
 public class Shooter : MonoBehaviour 
 {
 	// Energy is what the shooter expends to cast abilities to kill the runner
-	float maxEnergy = 100;
-	float curEnergy = 0;
-    float rechargeRate = 0.2f;
+	int maxEnergy = 1000;
+    int curEnergy = 0;
+    int rechargeRate = 5;
 
 	GameObject runner;
 
@@ -70,6 +70,7 @@ public class Shooter : MonoBehaviour
             DamageOnHit dmg = go.GetComponent<DamageOnHit>();
             dmg.damageOnHit = 10;
 
+            // Set speed of bullet
             go.rigidbody2D.velocity = 5 * Vector3.Normalize(runner.transform.position - getMousePosition());
 		}
 	}
