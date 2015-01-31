@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            //rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+            rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
