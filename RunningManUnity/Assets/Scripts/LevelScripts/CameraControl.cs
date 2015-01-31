@@ -16,6 +16,6 @@ public class CameraControl : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         scroll += scrollrate;
-        transform.position = new Vector3(scroll,player.transform.position.y,cameraDistance);
+        transform.position = new Vector3(scroll,player.transform.position.y + 5,cameraDistance);
 	}
 }
