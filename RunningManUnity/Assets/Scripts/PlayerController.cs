@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        if (otherCollider.gameObject.tag == "ground")
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
             grounded = true;
         }
