@@ -74,7 +74,7 @@ public class Shooter : MonoBehaviour
                 scrollAbilityDown();
         }
 
-		if (Input.GetMouseButtonDown(0))	// Left click
+		if (Input.GetMouseButton(0))	// Left click
 		{
             leftClickAbility.Cast();
 		}
