@@ -3,8 +3,9 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    float walkForce = 10.0f;
-    float jumpForce = 20.0f;
+    float walkForce = 2.5f;
+    float jumpForce = 5.0f;
+    bool grounded = true;
     //keyAbility Ability;
 	// Use this for initialization
 	void Start () {
@@ -24,12 +25,24 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+            if (grounded == true)
+            {
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+                grounded = false;
+            }
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.5f*jumpForce);
+            rigidbody2D.AddForce(new Vector2(rigidbody2D.velocity.x, -0.5f*jumpForce));
         }
 
 	}
+
+    void OnTriggerEnter2D(Collider2D otherCollider)
+    {
+        if (otherCollider.gameObject.tag == "ground")
+        {
+            grounded = true;
+        }
+    }
 }
