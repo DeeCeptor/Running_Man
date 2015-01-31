@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     int shieldhealth = 0;
     int Ability = 1;
     bool invuln;
+    int abilitycount = 0;
     DateTime wait;
 	// Use this for initialization
 	void Start () {
@@ -57,7 +58,13 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            callAbility();
+            if (abilitycount > 0)
+            {
+                {
+                    abilitycount -= 1;
+                    callAbility();
+                }
+            }
         }
         if (DateTime.Now == wait && invuln == true)
         {
@@ -81,6 +88,7 @@ public class PlayerController : MonoBehaviour {
                 health = 1000;
             }
         }
+
     }
 
     void callAbility()
@@ -129,6 +137,11 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("player health");
             Debug.Log(health);
         }
+    }
+
+    void getPower(int AbilityID, int count) {
+        Ability = AbilityID;
+        abilitycount = count;
     }
 
 }
