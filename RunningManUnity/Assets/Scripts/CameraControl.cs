@@ -3,15 +3,19 @@ using System.Collections;
 
 public class CameraControl : MonoBehaviour {
 
-    public int cameradistance = -20;
-    private Vector3 offset;
+    public int cameraDistance = -20;
+    [HideInInspector]
+    public float scroll = 0;
+    public float scrollrate = 0.01f;
+    private GameObject player;
 	// Use this for initialization
 	void Start () {
-        offset = new Vector3(0,0,cameradistance);
+        player = GameObject.Find("Runner");
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        transform.position = GameObject.Find("Runner").transform.position + offset;
+	void FixedUpdate () {
+        scroll += scrollrate;
+        transform.position = new Vector3(scroll,player.transform.position.y,cameraDistance);
 	}
 }
