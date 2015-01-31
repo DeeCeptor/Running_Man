@@ -22,7 +22,7 @@ public class DamageOnHit : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "Runner")
 		{
-			coll.gameObject.SendMessage("TakeHit", 10f);
+			coll.gameObject.SendMessage("TakeHit", damageOnHit);
 
             if (destroyOnHit)
             {

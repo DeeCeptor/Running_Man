@@ -31,6 +31,7 @@ public class Shooter : MonoBehaviour
     // Powerup abilities
     NoRightClick noRightClick;
     ShrapnelBlast shrapnelBlast;
+    Explosives explosives;
 	
 	void Start () 
 	{
@@ -44,6 +45,7 @@ public class Shooter : MonoBehaviour
         // Right click powerup abilities
         noRightClick = new NoRightClick(this);
         shrapnelBlast = new ShrapnelBlast(this);
+        explosives = new Explosives(this);
 
         abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
@@ -51,7 +53,7 @@ public class Shooter : MonoBehaviour
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
-        rightClickAbility = shrapnelBlast;
+        rightClickAbility = explosives;
 	}
 
 	

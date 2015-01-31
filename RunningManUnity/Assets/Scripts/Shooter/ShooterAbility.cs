@@ -10,7 +10,7 @@ public class ShooterAbility
     public int damage;
     [HideInInspector]
     public float speed = 5;
-    bool limitedUses = false;
+    protected bool limitedUses = false;
     [HideInInspector]
     public int usesLeft = 0;
 

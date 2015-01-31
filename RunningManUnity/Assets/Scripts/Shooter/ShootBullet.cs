@@ -29,9 +29,7 @@ public class ShootBullet : ShooterAbility
         Vector3 velocity = speed * Vector3.Normalize(shooter.runner.transform.position - shooter.getMousePosition());
         go.rigidbody2D.velocity = velocity;
 
-        //go.transform.localScale = new Vector3(go.transform.localScale.x, -go.transform.localScale.y, go.transform.localScale.z);
-        Debug.Log("hi");
+        // Rotate to look towards player
         go.transform.rotation = Quaternion.LookRotation(go.rigidbody2D.velocity);
-        //go.transform.rotation = new Quaternion(0, -Mathf.Sign(velocity.x) * 90, 0, 0);
     }
 }
