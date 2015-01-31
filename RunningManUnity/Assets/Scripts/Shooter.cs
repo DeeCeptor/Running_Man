@@ -80,7 +80,12 @@ public class Shooter : MonoBehaviour
 	{
 		if(canUseAbility(1, 1))
 		{
-			
+            curEnergy -= 10;
+
+            // SPAWN DOGE!
+            GameObject go = (GameObject)Instantiate(Resources.Load("Dog"), getMousePosition(), Quaternion.identity);
+            DamageOnHit dmg = go.GetComponent<DamageOnHit>();
+            dmg.damageOnHit = 10;
 		}
 	}
 
