@@ -18,6 +18,7 @@ public class DamageOnHit : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Runner")
 		{
+			Debug.Log("Hit runner with " + damageOnHit);
 			coll.gameObject.SendMessage("TakeHit", 10);
 
 		}
