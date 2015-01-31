@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 // Handles mouse controls
 public class Shooter : MonoBehaviour 
@@ -18,6 +19,7 @@ public class Shooter : MonoBehaviour
     ShooterAbility leftClickAbility;
     ShooterAbility middleClickAbility;
     ShooterAbility rightClickAbility;
+    LinkedList<ShooterAbility> abilityList = new LinkedList<ShooterAbility>();
 
     // All abilities
     ShootBullet shootBullet;
@@ -29,12 +31,13 @@ public class Shooter : MonoBehaviour
 	{
 		runner = GameObject.Find("Runner");
 
-        shootBullet.abilityName = "Fire Bullet";
-
         shootBullet = new ShootBullet(this);
         spawnDog = new SpawnDog(this);
         spawnBarricade = new SpawnBarricade(this);
         createMine = new CreateMine(this);
+
+        abilityList.AddLast(spawnBarricade);
+        abilityList.AddFirst(createMine);
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
@@ -50,6 +53,15 @@ public class Shooter : MonoBehaviour
             curEnergy = Mathf.Min((int) (curEnergy + (Time.deltaTime * rechargeRate)), maxEnergy);
         }
 
+        // Check scroll wheel
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                scrollAbilityUp();
+            else
+                scrollAbilityDown();
+        }
+
 		if (Input.GetMouseButtonDown(0))	// Left click
 		{
             leftClickAbility.Cast();
@@ -63,6 +75,31 @@ public class Shooter : MonoBehaviour
             middleClickAbility.Cast();
 		}
 	}
+
+
+    public void scrollAbilityUp()
+    {
+        try
+        {
+            middleClickAbility = abilityList.Find(middleClickAbility).Next.Value;
+        }
+        catch (System.NullReferenceException)
+        {
+            middleClickAbility = abilityList.First.Value;
+        }
+    }
+    public void scrollAbilityDown()
+    {
+        try
+        {
+            middleClickAbility = abilityList.Find(middleClickAbility).Previous.Value;
+        }
+        catch (System.NullReferenceException)
+        {
+            middleClickAbility = abilityList.Last.Value;
+        }
+    }
+
 
 
 	public Vector3 getMousePosition()
@@ -95,6 +132,9 @@ public class Shooter : MonoBehaviour
 
 	void OnGUI() 
 	{
-		GUI.Label(new Rect(10, 10, 100, 20), "" + curEnergy + "/" + maxEnergy);
+		GUI.Label(new Rect(Screen.width - 80, 10, 100, 20), "" + curEnergy + "/" + maxEnergy);
+        GUI.Label(new Rect(Screen.width - 120, 30, 100, 20), "" + leftClickAbility.abilityName);
+        GUI.Label(new Rect(Screen.width - 80, 50, 100, 20), "" + middleClickAbility.abilityName);
+        GUI.Label(new Rect(Screen.width - 30, 30, 100, 20), "" + rightClickAbility.abilityName);
 	}
 }

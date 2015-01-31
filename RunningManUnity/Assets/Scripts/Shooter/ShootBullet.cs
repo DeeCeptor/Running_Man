@@ -8,7 +8,8 @@ public class ShootBullet : ShooterAbility
     public ShootBullet(Shooter shooter)
         : base(shooter)
     {
-        
+        this.abilityName = "Bullet";
+        energyCost = 300;
     }
 
 
@@ -17,7 +18,7 @@ public class ShootBullet : ShooterAbility
         base.CastAbility();
 
         // Fire bullet
-        GameObject go = (GameObject)Instantiate(Resources.Load("Bullet"), shooter.getMousePosition(), Quaternion.identity);
+        GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Bullet"), shooter.getMousePosition(), Quaternion.identity);
 
         // Set damage
         DamageOnHit dmg = go.GetComponent<DamageOnHit>();
@@ -25,9 +26,6 @@ public class ShootBullet : ShooterAbility
 
         // Set speed of bullet
         Vector3 velocity = speed * Vector3.Normalize(shooter.runner.transform.position - shooter.getMousePosition());
-        velocity.z = 0;
-        if(!angledBullets)
-            velocity.y = 0;
         go.rigidbody2D.velocity = velocity;
     }
 }

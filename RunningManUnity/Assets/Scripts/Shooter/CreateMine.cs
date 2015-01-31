@@ -5,7 +5,8 @@ public class CreateMine : ShooterAbility {
 
     public CreateMine(Shooter shooter) : base(shooter)
     {
-        
+        this.abilityName = "Mine";
+        energyCost = 300;
     }
 
     protected override void CastAbility()
@@ -13,8 +14,8 @@ public class CreateMine : ShooterAbility {
         base.CastAbility();
 
         // Mine
-        GameObject go = (GameObject)Instantiate(Resources.Load("Mine"), shooter.getMousePosition(), Quaternion.identity);
-
+        GameObject go = (GameObject) GameObject.Instantiate(Resources.Load("Mine"), shooter.getMousePosition(), Quaternion.identity);
+        
         // Set damage
         DamageOnHit dmg = go.GetComponent<DamageOnHit>();
         dmg.damageOnHit = damage;

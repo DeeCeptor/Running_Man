@@ -2,13 +2,14 @@
 using System.Collections;
 
 // Base class for other abilities to inherit
-public class ShooterAbility : MonoBehaviour
+public class ShooterAbility
 {
     protected Shooter shooter;
     public int energyCost;
     public string abilityName;
     public int damage;
-    public float speed;
+    [HideInInspector]
+    public float speed = 5;
 
 
     public ShooterAbility(Shooter inShooter)

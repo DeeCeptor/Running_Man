@@ -6,7 +6,8 @@ public class SpawnBarricade : ShooterAbility {
     public SpawnBarricade(Shooter shooter)
         : base(shooter)
     {
-        
+        this.abilityName = "Barricade";
+        energyCost = 600;
     }
 
 
@@ -15,6 +16,6 @@ public class SpawnBarricade : ShooterAbility {
         base.CastAbility();
 
         // Create barricade
-        GameObject go = (GameObject)Instantiate(Resources.Load("Barricade"), shooter.getMousePosition(), Quaternion.identity);
+        GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Barricade"), shooter.getMousePosition(), Quaternion.identity);
     }
 }

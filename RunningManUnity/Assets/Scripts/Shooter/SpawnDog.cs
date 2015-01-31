@@ -6,7 +6,8 @@ public class SpawnDog : ShooterAbility {
     public SpawnDog(Shooter shooter)
         : base(shooter)
     {
-        
+        this.abilityName = "Dog";
+        energyCost = 600;
     }
 
 
@@ -15,7 +16,7 @@ public class SpawnDog : ShooterAbility {
         base.CastAbility();
 
         // Fire bullet
-        GameObject go = (GameObject)Instantiate(Resources.Load("Dog"), shooter.getMousePosition(), Quaternion.identity);
+        GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Dog"), shooter.getMousePosition(), Quaternion.identity);
 
         // Set damage
         DamageOnHit dmg = go.GetComponent<DamageOnHit>();
