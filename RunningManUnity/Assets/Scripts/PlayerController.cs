@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("bullet"))
         {
-            TakeHit();
+           // TakeHit();
         }
     }
 
