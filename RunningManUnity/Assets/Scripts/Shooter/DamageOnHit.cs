@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageOnHit : MonoBehaviour {
+public class DamageOnHit : MonoBehaviour 
+{
 	public float damageOnHit = 10;
     public bool destroyOnHit = true;
+
 
 	void Start () {
 	

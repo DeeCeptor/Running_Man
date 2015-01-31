@@ -6,7 +6,9 @@ public class EnemyWalking : MonoBehaviour
 {
     bool grounded = false;
     GameObject runner;
-    float speed = 5;
+    [HideInInspector]
+    public float speed = 5;
+
 
 	void Start () 
     {
@@ -27,11 +29,9 @@ public class EnemyWalking : MonoBehaviour
     {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
-            Debug.Log("woof");
             grounded = true;
 
-
-            Debug.Log("walking");
+            // Once on the ground the enemy walks in the X direction of the player
             Vector3 velocity = Vector3.Normalize(runner.transform.position - this.transform.position) * speed;
             velocity.y = 0;
             velocity.z = 0;
