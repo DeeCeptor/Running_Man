@@ -29,6 +29,7 @@ public class Shooter : MonoBehaviour
     CreateMine createMine;
 
     // Powerup abilities
+    NoRightClick noRightClick;
     ShrapnelBlast shrapnelBlast;
 	
 	void Start () 
@@ -41,6 +42,7 @@ public class Shooter : MonoBehaviour
         createMine = new CreateMine(this);
 
         // Right click powerup abilities
+        noRightClick = new NoRightClick(this);
         shrapnelBlast = new ShrapnelBlast(this);
 
         abilityList.AddLast(createMine);
@@ -83,7 +85,7 @@ public class Shooter : MonoBehaviour
                 // Remove the ability if we're out of casts
                 if (rightClickAbility.usesLeft <= 0)
                 {
-                    rightClickAbility = null;
+                    rightClickAbility = noRightClick;
                 }
             }
 		}
