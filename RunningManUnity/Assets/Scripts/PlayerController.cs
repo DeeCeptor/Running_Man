@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     bool right = false;
     int shieldhealth = 0;
     int Ability = 1;
-    bool invuln;
+    bool invuln = false;
     int abilitycount = 0;
     DateTime wait;
 	// Use this for initialization
@@ -51,21 +51,24 @@ public class PlayerController : MonoBehaviour {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
             }
         }
+
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             if (grounded == true)
             {
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce);
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce); //make it more responsive, terminate jump on release
                 grounded = false;
             }
         }
+
         if (Input.GetKey(KeyCode.DownArrow))
         {
             rigidbody2D.AddForce(new Vector2(rigidbody2D.velocity.x, -1.5f*jumpForce));
         }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            if (abilitycount > 0)
+            if (abilitycount > 0) //if any charges left, activate here
             {
                 {
                     abilitycount -= 1;
@@ -73,21 +76,22 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
+
         if (DateTime.Now == wait && invuln == true)
         {
             invuln = false;
         }
-
-
 	}
 
     void OnCollisionEnter2D(Collision2D otherCollider)
     {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
-            grounded = true;
+            grounded = true; //wall jumping ahoy!
         }
+
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("healthpack"))
+        //separate block to avoid screwing with shield code
         {
             health = health + 100;
             if (health > 1000)
@@ -97,14 +101,14 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("shield"))
-        {
+        { //acquire shield here
             shield = true;
             shieldhealth = 250;
         }
 
     }
 
-    void callAbility()
+    void callAbility() //add more abilities here, see getPower() for param details, abilities are just activated here
     {
         switch (Ability)
         {
@@ -151,6 +155,8 @@ public class PlayerController : MonoBehaviour {
             Debug.Log(health);
         }
     }
+    
+    //pass in an array parameter pair, first one is ability id, second is number of charges
 
     void getPower(int[] powerinfo) {
         Ability = powerinfo[0];
