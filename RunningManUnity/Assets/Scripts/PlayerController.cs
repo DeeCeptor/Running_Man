@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
     public Vector3 size = new Vector3(100, 10, 100);
     public Animator Anim;
     Slider healthBar;
+    public AudioClip scream;
+
 
     Texture2D texture;
     public LayerMask mask = -1;
@@ -212,6 +214,11 @@ public class PlayerController : MonoBehaviour {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
             grounded = true; 
+        }
+
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("bottom"))
+        {
+            audio.PlayOneShot(scream, 1f);
         }
 
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("healthpack"))
