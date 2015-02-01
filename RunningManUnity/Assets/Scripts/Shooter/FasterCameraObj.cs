@@ -12,7 +12,6 @@ public class FasterCameraObj : MonoBehaviour
 	void Start () 
     {
         camera = GameObject.Find("Main Camera").GetComponent<CameraControl>();
-        Debug.Log(camera.scrollrate);
         prevAmount = camera.scrollrate;
         camera.scrollrate += increase;
 	}

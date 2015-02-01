@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour {
        // RaycastHit hit;
         //Debug.Log(Physics.Raycast(this.transform.position, new Vector3(0, 0, 1), out hit, 5, mask.value));
       //  Debug.Log(hit.textureCoord);
-       // RaycastHit2D ray = Physics2D.Raycast(this.transform.position, new Vector3(1, 0), 5, mask.value);
+     //   RaycastHit2D ray = Physics2D.Raycast(this.transform.position, new Vector3(1, 0), 5, mask.value);
+    //    ray.transform
         //Debug.Log(ray.transform);
        // Debug.Log(hit.textureCoord);
         /*
@@ -132,6 +133,7 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
             if (grounded == true)
             {
+
                 Anim.SetBool("isRunning", false);
                 Anim.SetBool("isLanding", false);
                 Anim.SetBool("isJumping", false);
@@ -144,7 +146,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("jumping");
-            if (grounded == true)
+            if (grounded)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
                 Anim.SetBool("isRunning", false);

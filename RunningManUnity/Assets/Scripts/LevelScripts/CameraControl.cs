@@ -6,7 +6,7 @@ public class CameraControl : MonoBehaviour {
     public int cameraDistance = -20;
     [HideInInspector]
     public float scroll = 0;
-    public float scrollrate = .5f;
+    public float scrollrate;
     private GameObject player;
 	// Use this for initialization
 	void Start () {
