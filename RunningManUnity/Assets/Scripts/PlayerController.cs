@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     int abilitycount = 0;
     DateTime wait;
     public GameObject plane;
-    public Texture heightmap;
+    public Texture2D heightmap;
     public Vector3 size = new Vector3(100, 10, 100);
     public Animator Anim;
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rigidbody.velocity = new Vector2(walkForce, rigidbody.velocity.y);
+            rigidbody2D.velocity = new Vector2(walkForce, rigidbody2D.velocity.y);
             if (left &&!right)
             {
                 Vector3 theScale = transform.localScale;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody.velocity = new Vector2(-1.0f * walkForce, rigidbody.velocity.y);
+            rigidbody2D.velocity = new Vector2(-1.0f * walkForce, rigidbody2D.velocity.y);
             if (right &&!left)
             {
                 Vector3 theScale = transform.localScale;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+            rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
             Anim.SetBool("isRunning", false);
             Anim.SetBool("isLanding", false);
             Anim.SetBool("isJumping", false);
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("jumping");
             if (grounded == true)
             {
-                rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
                 Anim.SetBool("isRunning", false);
                 Anim.SetBool("isLanding", false);
                 Anim.SetBool("isJumping", true);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour {
         {
             if (grounded)
             {
-                rigidbody.velocity = new Vector2(rigidbody.velocity.x, -0.01f * jumpForce); //make it more responsive, terminate jump on release
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce); //make it more responsive, terminate jump on release
                 grounded = false;
             }
         }
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour {
                 Anim.SetBool("isIdle", false);
                 Anim.SetBool("isSliding", true);
             }
-            rigidbody.AddForce(new Vector2(rigidbody.velocity.x, -1.5f*jumpForce));
+            rigidbody2D.AddForce(new Vector2(rigidbody2D.velocity.x, -1.5f*jumpForce));
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-    void OnCollisionStay(Collision otherCollider)
+    void OnCollisionStay2D(Collision2D otherCollider)
     {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision otherCollider)
+    void OnCollisionEnter2D(Collision2D otherCollider)
     {
 
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
