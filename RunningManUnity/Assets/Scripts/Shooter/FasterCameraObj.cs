@@ -1,29 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StopCameraObj : MonoBehaviour 
+public class FasterCameraObj : MonoBehaviour 
 {
     CameraControl camera;
-    float timeRemaining = 10.0f;
+    float timeRemaining = 7.0f;
+    float increase = 0.05f;
     float prevAmount;
 
-	// Use this for initialization
+	
 	void Start () 
     {
         camera = GameObject.Find("Main Camera").GetComponent<CameraControl>();
         Debug.Log(camera.scrollrate);
         prevAmount = camera.scrollrate;
-        camera.scrollrate = 0;
+        camera.scrollrate += increase;
 	}
 	
-	// Update is called once per frame
+	
 	void Update () 
     {
         timeRemaining -= Time.deltaTime;
 
         if (timeRemaining <= 0)
         {
-            camera.scrollrate += prevAmount;
+            camera.scrollrate -= increase;
             Destroy(this.gameObject);
         }
 	}

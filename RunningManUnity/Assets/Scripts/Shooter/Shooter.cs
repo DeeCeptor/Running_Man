@@ -35,7 +35,7 @@ public class Shooter : MonoBehaviour
     ShrapnelBlast shrapnelBlast;
     Explosives explosives;
     StopCamera stopCamera;
-
+    FasterCamera fasterCamera;
 	
 	void Start () 
 	{
@@ -52,7 +52,7 @@ public class Shooter : MonoBehaviour
         shrapnelBlast = new ShrapnelBlast(this);
         explosives = new Explosives(this);
         stopCamera = new StopCamera(this);
-
+        fasterCamera = new FasterCamera(this);
 
         abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
@@ -60,7 +60,7 @@ public class Shooter : MonoBehaviour
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
-        rightClickAbility = stopCamera;
+        rightClickAbility = fasterCamera;
 	}
 
 	

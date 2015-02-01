@@ -13,7 +13,8 @@ public class ShooterPowerup : MonoBehaviour {
 	    // Determine what type of powerup this is
         potentialAbilities[0] = new Explosives(shooter);
         potentialAbilities[1] = new ShrapnelBlast(shooter);
-        //potentialAbilities[2] = new Explosives(shooter);
+        potentialAbilities[2] = new FasterCamera(shooter);
+        potentialAbilities[2] = new StopCamera(shooter);
 
         abilityGiven = potentialAbilities[Random.Range(0, potentialAbilities.Length)];
 	}
