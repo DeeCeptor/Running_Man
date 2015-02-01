@@ -9,7 +9,7 @@ public class ShootBullet : ShooterAbility
         : base(shooter)
     {
         this.abilityName = "Bullet";
-        energyCost = 300;
+        energyCost = 400;
 
         damage = 100;
     }

@@ -107,7 +107,7 @@ public class Shooter : MonoBehaviour
                 if (rightClickAbility.usesLeft <= 0)
                 {
                     changeRightClickAbility(noRightClick);
-                    rightClickText.sprite = null;
+                    //rightClickText.sprite = null;
                 }
             }
 		}
@@ -189,13 +189,4 @@ public class Shooter : MonoBehaviour
     {
         curEnergy -= amount;
     }
-
-
-	void OnGUI() 
-	{
-		GUI.Label(new Rect(Screen.width - 80, 10, 100, 20), "" + curEnergy + "/" + maxEnergy);
-        GUI.Label(new Rect(Screen.width - 120, 30, 100, 20), "" + leftClickAbility.abilityName);
-        GUI.Label(new Rect(Screen.width - 80, 50, 100, 20), "" + middleClickAbility.abilityName);
-        GUI.Label(new Rect(Screen.width - 30, 30, 100, 20), "" + rightClickAbility.abilityName + " " + rightClickAbility.usesLeft);
-	}
 }

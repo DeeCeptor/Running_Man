@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DestroyAfter : MonoBehaviour {
 
-    public float duration = 2;  // Duration in seconds
+    public float duration = 4;  // Duration in seconds
 
 
 	void Update () 
