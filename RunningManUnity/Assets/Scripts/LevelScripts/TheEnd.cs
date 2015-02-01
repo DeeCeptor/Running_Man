@@ -20,7 +20,7 @@ public class TheEnd : MonoBehaviour
     {
         if (coll.gameObject.tag == "Runner")
         {
-            Application.LoadLevel("Menu");
+            Application.LoadLevel("End");
         }
     }
 }
