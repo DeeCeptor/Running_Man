@@ -6,6 +6,7 @@ public class DamageOnHit : MonoBehaviour
 	public float damageOnHit = 10;
     public bool destroyOnHit = true;
     public bool destroyOnGround = false;
+    public bool createsExplosion = true;
 
 
 	void Start () {
@@ -26,12 +27,23 @@ public class DamageOnHit : MonoBehaviour
 
             if (destroyOnHit)
             {
-                Destroy(this.gameObject);
+                RemoveObject();
             }
 		}
         else if (destroyOnGround && coll.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
-            Destroy(this.gameObject);
+            RemoveObject();
         }
 	}
+
+
+    public void RemoveObject()
+    {
+        if (createsExplosion)
+        {
+            GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Explosion"), this.transform.position, Quaternion.identity);
+        }
+
+        Destroy(this.gameObject);
+    }
 }
