@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 	}
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 25, 100, 20), "" + health + "/1000");
+        GUI.Label(new Rect(10, 25, 100, 20), "" + shieldhealth + "/250");
     }
 	// Update is called once per frame
 	void Update () 
@@ -235,6 +235,7 @@ public class PlayerController : MonoBehaviour {
         { //acquire shield here
             shield = true;
             shieldhealth = 250;
+            Debug.Log("got shield");
         }
 
     }
@@ -260,6 +261,7 @@ public class PlayerController : MonoBehaviour {
                  */
                 wait = DateTime.Now.AddSeconds(2);
                 invuln = true;
+                
                 break;
         }
     }

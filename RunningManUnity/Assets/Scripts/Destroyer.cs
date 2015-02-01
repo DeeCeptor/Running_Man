@@ -18,6 +18,9 @@ public class Destroyer : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D otherCollider)
     {
-        Destroy(gameObject);
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("Runner"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
