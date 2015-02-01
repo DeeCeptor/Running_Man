@@ -11,7 +11,7 @@ public class herobuffspawner : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-        int choice = Random.Range(0, 3);
+        int choice = Random.Range(0, 4);
         switch (choice)
         {
             case 0:

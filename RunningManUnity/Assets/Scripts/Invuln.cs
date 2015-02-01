@@ -19,6 +19,7 @@ public class Invuln : MonoBehaviour {
         powerinfo[0] = 1;
         powerinfo[1] = 1;
         otherCollider.gameObject.SendMessage("getPower", powerinfo);
-        Destroy(this);
+        Destroy(gameObject);
+        
     }
 }
