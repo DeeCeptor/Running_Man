@@ -22,5 +22,6 @@ public class CreateMine : ShooterAbility {
         // Set damage
         DamageOnHit dmg = go.GetComponent<DamageOnHit>();
         dmg.damageOnHit = damage;
+        dmg.explosionScaleFactor = 4f;
     }
 }

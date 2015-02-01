@@ -7,7 +7,8 @@ public class DamageOnHit : MonoBehaviour
     public bool destroyOnHit = true;
     public bool destroyOnGround = false;
     public bool createsExplosion = true;
-
+    public bool destroyOnAnyCollision = false;
+    public float explosionScaleFactor = 1;
 
 	void Start () {
 	
@@ -34,6 +35,10 @@ public class DamageOnHit : MonoBehaviour
         {
             RemoveObject();
         }
+        else if(destroyOnAnyCollision)
+        {
+            RemoveObject();
+        }
 	}
 
 
@@ -42,6 +47,7 @@ public class DamageOnHit : MonoBehaviour
         if (createsExplosion)
         {
             GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Explosion"), this.transform.position, Quaternion.identity);
+            go.transform.localScale *= explosionScaleFactor;
         }
 
         Destroy(this.gameObject);

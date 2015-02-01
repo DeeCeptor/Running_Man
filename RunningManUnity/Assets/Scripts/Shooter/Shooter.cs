@@ -58,6 +58,10 @@ public class Shooter : MonoBehaviour
 
         abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
+        abilityList.AddLast(explosives);
+        abilityList.AddLast(stopCamera);
+        abilityList.AddLast(fasterCamera);
+        abilityList.AddLast(shrapnelBlast);
         abilityList.AddFirst(spawnDog);
 
         leftClickAbility = shootBullet;

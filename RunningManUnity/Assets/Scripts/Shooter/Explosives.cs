@@ -5,7 +5,7 @@ using System.Collections;
 public class Explosives : ShooterAbility {
     
     public float countdownTime = 1.5f;
-    public float radius = 2;
+    public float radius = 3;
 
 
     public Explosives(Shooter shooter)

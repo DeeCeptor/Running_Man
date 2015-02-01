@@ -7,5 +7,6 @@ public class NoRightClick : ShooterAbility {
       : base(shooter)
     {
         this.abilityName = " ";
+        this.iconString = "NullHD";
     }
 }
