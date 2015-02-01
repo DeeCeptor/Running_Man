@@ -16,6 +16,7 @@ public class Explosives : ShooterAbility {
         this.usesLeft = 3;
         this.iconString = "ShooterExplosive";
 
+        this.energyCost = 300;
         damage = 300;
     }
 

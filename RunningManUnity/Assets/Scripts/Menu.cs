@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     int buttonWidth;
     int buttonHeight;
 
-    private string controlsString = "<b><color=red>Runner</color></b>\n AD: Movement \n S: Dodge " +
+    private string controlsString = "<b><color=red>Runner</color></b>\n Movement: Arrow keys \n Sprint: Shift \n Space: Activate special \n Specials: Shield: Temporary invulnerability for 2 seconds Blink: Short range  " +
         "\n Left Control: Punch \n W or Spacebar: Jump \n\n " +
             "<b><color=white>Player Two</color></b>\n Use the mouse to kill the runner before reaching the end \n Left Mouse: Shoot Bullet " +
             "\n Middle Mouse: Middle Power \n Scroll Wheel: Change Middle Mouse Power\n Right Mouse: Use Pickup Power \n\n" +
@@ -37,7 +37,7 @@ public class Menu : MonoBehaviour
             Application.LoadLevel("MitchellsLevel");
 
         // Display credits
-        GUI.Label(new Rect((float)(leftAlignment + buttonWidth * 1.5f), yStart, 100, 50), "Controls");
-        GUI.Box(new Rect((float)(leftAlignment + buttonWidth * 2.2f), yStart + yOffset, 400, 400), controlsString);
+        GUI.Label(new Rect((float)(leftAlignment + buttonWidth * 2.2f), yStart, 100, 50), "Controls");
+        GUI.Box(new Rect((float)(leftAlignment + buttonWidth * 2.2f), yStart + yOffset, 500, 400), controlsString);
     }
 }
