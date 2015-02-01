@@ -36,7 +36,16 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        Debug.Log("a");
+
+        if (grounded == false)
+        {
+            Anim.SetBool("isRunning", false);
+            Anim.SetBool("isLanding", false);
+            Anim.SetBool("isJumping", true);
+            Anim.SetBool("isIdle", false);
+            Anim.SetBool("isSliding", false);
+        }
+     
        // RaycastHit hit;
         //Debug.Log(Physics.Raycast(this.transform.position, new Vector3(0, 0, 1), out hit, 5, mask.value));
       //  Debug.Log(hit.textureCoord);
@@ -99,6 +108,15 @@ public class PlayerController : MonoBehaviour {
             }
             left = true;
             right = false;
+            
+            if (!grounded) {
+                Anim.SetBool("isRunning", false);
+                Anim.SetBool("isLanding", false);
+                Anim.SetBool("isJumping", true);
+                Anim.SetBool("isIdle", false);
+                Anim.SetBool("isSliding", false);
+
+            }
 
             if (grounded == true)
             {
@@ -137,12 +155,13 @@ public class PlayerController : MonoBehaviour {
            }
         }
 
+
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             if (grounded == true)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce); //make it more responsive, terminate jump on release
-                grounded = false;
+                //grounded = false;
             }
         }
 
@@ -175,6 +194,9 @@ public class PlayerController : MonoBehaviour {
             invuln = false;
         }
 
+
+
+
         /******
          * CODE FOR TEXTURE SWITCHING BELOW
          * ABANDON HOPE ALL YE WHO ENTER HERE
@@ -193,6 +215,14 @@ public class PlayerController : MonoBehaviour {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
             grounded = true; //wall jumping ahoy!
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D otherCollider)
+    {
+        if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
+        {
+            grounded = false;
         }
     }
 
