@@ -21,7 +21,7 @@ public class ShootBullet : ShooterAbility
 
         // Fire bullet
         GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Bullet"), shooter.getMousePosition(), Quaternion.identity);
-       
+        
         // Set damage
         DamageOnHit dmg = go.GetComponent<DamageOnHit>();
         dmg.damageOnHit = damage;
@@ -38,6 +38,6 @@ public class ShootBullet : ShooterAbility
         go.rigidbody2D.velocity = velocity;
 
         // Rotate to look towards player
-        //go.transform.rotation = Quaternion.LookRotation(go.rigidbody2D.velocity);
+        go.transform.rotation = Quaternion.LookRotation(go.rigidbody2D.velocity);
     }
 }

@@ -33,15 +33,13 @@ public class PlayerController : MonoBehaviour {
     public LayerMask mask = -1;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
         Anim = gameObject.GetComponentInChildren<Animator>();
         healthBar = GameObject.Find("Runner HP").GetComponent<Slider>();
         shieldBar = GameObject.Find("Shield Bar").GetComponent<Slider>();
 	}
-    void OnGUI()
-    {
-        GUI.Label(new Rect(10, 25, 100, 20), "" + shieldhealth + "/250");
-    }
+
 	// Update is called once per frame
 	void Update () 
     {
@@ -182,23 +180,9 @@ public class PlayerController : MonoBehaviour {
             invuln = false;
         }
 
-        Debug.Log(grounded);
-
         // Update health bar
         healthBar.normalizedValue = (float) ((float) health / (float) healthMax);
         shieldBar.normalizedValue = (float)((float)shieldhealth / (float) 250);
-
-        /******
-         * CODE FOR TEXTURE SWITCHING BELOW
-         * ABANDON HOPE ALL YE WHO ENTER HERE
-         */
-
-      //  plane = GameObject.Find("background");
-        int x = (int)transform.position.x;
-        int y = (int)transform.position.y;
-        //float currcolor = heightmap.GetPixel(x, y).grayscale;
-        //Debug.Log(currcolor);
-
 	}
 
     void OnCollisionStay2D(Collision2D otherCollider)

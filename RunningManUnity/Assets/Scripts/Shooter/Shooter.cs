@@ -158,7 +158,6 @@ public class Shooter : MonoBehaviour
 		Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		position.z = 0;
 		return position;
-		//	new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
 	}
 
 
@@ -166,13 +165,24 @@ public class Shooter : MonoBehaviour
 	// Returns true if mouse is at least distance away from runner
 	public bool canUseAbility(float distance, float abilityCost)
 	{
-		if (curEnergy >= abilityCost && (Vector3.Distance(getMousePosition(), runner.transform.position) > distance))
+		if (curEnergy >= abilityCost && (Vector3.Distance(getMousePosition(), runner.transform.position) > distance || closeToEdge()))
 		{
 			return true;
 		}
 		else
 			return false;
 	}
+
+
+    public bool closeToEdge()
+    {
+        if (Input.mousePosition.x < Screen.width / 8 || Input.mousePosition.x > Screen.width - Screen.width / 8)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 
 
     public void loseEnergy(int amount)
