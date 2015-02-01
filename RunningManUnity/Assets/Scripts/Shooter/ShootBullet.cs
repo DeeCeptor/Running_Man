@@ -38,6 +38,6 @@ public class ShootBullet : ShooterAbility
         go.rigidbody2D.velocity = velocity;
 
         // Rotate to look towards player
-        go.transform.rotation = Quaternion.LookRotation(go.rigidbody2D.velocity);
+        //go.transform.rotation = Quaternion.LookRotation(go.rigidbody2D.velocity);
     }
 }
