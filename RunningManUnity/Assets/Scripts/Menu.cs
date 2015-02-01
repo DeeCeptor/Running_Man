@@ -10,12 +10,12 @@ public class Menu : MonoBehaviour
     int buttonWidth;
     int buttonHeight;
 
-    private string controlsString = "<b><color=red>Player One</color></b>\n AD: Movement \n S: Dodge " +
+    private string controlsString = "<b><color=red>Runner</color></b>\n AD: Movement \n S: Dodge " +
         "\n Left Control: Punch \n W or Spacebar: Jump \n\n " +
-            "<b><color=white>Player Two</color></b>\n Left and Right Arrows: Movement \n Down Arrow: Dodge " +
-            "\n Right Control: Punch \n Up Arrow: Jump \n\n" +
-            " Escape to toggle Controls Menu\n\n" +
-            " <b><color=white>Created by:\n William Selby \n Austin Black \n Mitchell Craig\n Michael Long</color></b>";
+            "<b><color=white>Player Two</color></b>\n Use the mouse to kill the runner before reaching the end \n Left Mouse: Shoot Bullet " +
+            "\n Middle Mouse: Middle Power \n Scroll Wheel: Change Middle Mouse Power\n Right Mouse: Use Pickup Power \n\n" +
+            " \n Left click on powerups to gain Right Mouse abilities \n Right mouse ability have limited uses \n You cannot click when too close to the Runner" +
+            " <b><color=white>Created by:\n Michael Long \n William Selby \n Austin Black \n Mitchell Craig</color></b>";
 
 
     void Start()
@@ -38,6 +38,6 @@ public class Menu : MonoBehaviour
 
         // Display credits
         GUI.Label(new Rect((float)(leftAlignment + buttonWidth * 1.5f), yStart, 100, 50), "Controls");
-        GUI.Box(new Rect((float)(leftAlignment + buttonWidth * 1.5f), yStart + yOffset, 400, 300), controlsString);
+        GUI.Box(new Rect((float)(leftAlignment + buttonWidth * 2.2f), yStart + yOffset, 400, 400), controlsString);
     }
 }
