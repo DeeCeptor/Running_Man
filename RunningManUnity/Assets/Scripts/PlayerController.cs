@@ -229,6 +229,7 @@ public class PlayerController : MonoBehaviour {
             {
                 health = 1000;
             }
+            Destroy(otherCollider.collider.gameObject);
         }
 
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("shield"))
@@ -236,6 +237,7 @@ public class PlayerController : MonoBehaviour {
             shield = true;
             shieldhealth = 250;
             Debug.Log("got shield");
+            Destroy(otherCollider.collider.gameObject);
         }
 
     }

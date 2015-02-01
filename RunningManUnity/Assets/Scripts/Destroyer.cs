@@ -20,7 +20,7 @@ public class Destroyer : MonoBehaviour
     {
         if (otherCollider.collider.gameObject.layer == LayerMask.NameToLayer("Runner"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
