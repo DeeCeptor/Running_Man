@@ -8,6 +8,7 @@ public class SpawnBarricade : ShooterAbility {
     {
         this.abilityName = "Barricade";
         energyCost = 600;
+        this.iconString = "ShooterIconBarricade";
     }
 
 

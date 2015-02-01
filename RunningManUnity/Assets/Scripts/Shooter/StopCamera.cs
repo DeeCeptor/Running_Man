@@ -9,6 +9,7 @@ public class StopCamera : ShooterAbility
     {
         this.abilityName = "Freeze";
         energyCost = 500;
+        this.iconString = "ShooterPowerStop";
 
         limitedUses = true;
         usesLeft = 1;

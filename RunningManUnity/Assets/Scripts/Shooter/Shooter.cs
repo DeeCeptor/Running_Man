@@ -15,6 +15,8 @@ public class Shooter : MonoBehaviour
 
     [HideInInspector]
 	public GameObject runner;
+    Image middleClickText;
+    Image rightClickText;
 
     Slider energyBar;   // Shows how much energy is remaining
 
@@ -61,6 +63,12 @@ public class Shooter : MonoBehaviour
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
         rightClickAbility = fasterCamera;
+
+        // Grab GUI icons
+        middleClickText = GameObject.Find("Middle Click Icon").GetComponent<Image>();
+        rightClickText = GameObject.Find("Right Click Icon").GetComponent<Image>();
+
+        middleClickText.sprite = Resources.Load(middleClickAbility.iconString, typeof(Sprite)) as Sprite;
 	}
 
 	
@@ -95,6 +103,7 @@ public class Shooter : MonoBehaviour
                 if (rightClickAbility.usesLeft <= 0)
                 {
                     changeRightClickAbility(noRightClick);
+                    rightClickText.sprite = null;
                 }
             }
 		}
@@ -119,6 +128,7 @@ public class Shooter : MonoBehaviour
         {
             middleClickAbility = abilityList.First.Value;
         }
+        middleClickText.sprite = Resources.Load(middleClickAbility.iconString, typeof(Sprite)) as Sprite;
     }
     public void scrollAbilityDown()
     {
@@ -130,10 +140,12 @@ public class Shooter : MonoBehaviour
         {
             middleClickAbility = abilityList.Last.Value;
         }
+        middleClickText.sprite = Resources.Load(middleClickAbility.iconString, typeof(Sprite)) as Sprite;
     }
     public void changeRightClickAbility(ShooterAbility newAbility)
     {
         rightClickAbility = newAbility;
+        rightClickText.sprite = Resources.Load(rightClickAbility.iconString, typeof(Sprite)) as Sprite;
     }
 
 

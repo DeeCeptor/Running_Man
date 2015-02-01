@@ -7,6 +7,7 @@ public class CreateMine : ShooterAbility {
     {
         this.abilityName = "Mine";
         energyCost = 300;
+        this.iconString = "ShooterIconMine";
 
         damage = 10;
     }

@@ -9,6 +9,7 @@ public class FasterCamera : ShooterAbility
     {
         this.abilityName = "Faster";
         energyCost = 500;
+        this.iconString = "ShooterPowerSpeedUp";
 
         limitedUses = true;
         usesLeft = 1;

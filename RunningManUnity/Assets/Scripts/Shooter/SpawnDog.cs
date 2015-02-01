@@ -8,6 +8,7 @@ public class SpawnDog : ShooterAbility {
     {
         this.abilityName = "Dog";
         energyCost = 600;
+        this.iconString = "ShooterIconDog";
 
         damage = 20;
     }

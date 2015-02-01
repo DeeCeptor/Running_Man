@@ -5,6 +5,7 @@ using System.Collections;
 public class ShooterAbility
 {
     protected Shooter shooter;
+    public string iconString;
     public int energyCost;
     public string abilityName;
     public int damage = 5;
