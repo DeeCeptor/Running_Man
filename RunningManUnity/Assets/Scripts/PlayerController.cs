@@ -21,9 +21,13 @@ public class PlayerController : MonoBehaviour {
     public Vector3 size = new Vector3(100, 10, 100);
     public Animator Anim;
 
+    Texture2D texture;
+    public LayerMask mask = -1;
+
 	// Use this for initialization
 	void Start () {
         Anim = gameObject.GetComponentInChildren<Animator>();
+        //texture = this.ren.material.mainTexture;
 	}
     void OnGUI()
     {
@@ -31,6 +35,29 @@ public class PlayerController : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+        RaycastHit hit;
+       // Debug.Log(Physics.Raycast(this.transform.position, new Vector3(0, 0, 1), out hit, 5, mask.value));
+      //  Debug.Log(hit.textureCoord);
+        Debug.Log(Physics2D.Raycast(this.transform.position, new Vector3(1, 0), 5, mask.value).transform);
+       // Debug.Log(hit.textureCoord);
+        /*
+        int y = 0;
+        while (y < texture.height)
+        {
+            int x = 0;
+            while (x < texture.width)
+            {
+                //Color color = ((x & y) ? Color.white : Color.gray);
+                Color color = 
+                texture.SetPixel(x, y, color);
+                ++x;
+
+                
+            }
+            ++y;
+        }
+        texture.Apply();*/
+
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -91,8 +118,8 @@ public class PlayerController : MonoBehaviour {
                 Anim.SetBool("isSliding", false);
                 
             }
-           }
-        Debug.Log(grounded);
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("jumping");
