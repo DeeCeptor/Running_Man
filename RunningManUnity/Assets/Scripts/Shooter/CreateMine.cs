@@ -6,7 +6,7 @@ public class CreateMine : ShooterAbility {
     public CreateMine(Shooter shooter) : base(shooter)
     {
         this.abilityName = "Mine";
-        energyCost = 300;
+        energyCost = 500;
         this.iconString = "ShooterIconMine";
 
         damage = 400;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-    float walkForce = 5.0f;
+    float walkForce = 8.0f;
     float jumpForce = 10.0f;
     bool grounded = true;
     int health = 1000;
