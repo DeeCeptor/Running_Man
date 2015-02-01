@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     int Ability = 1;
     bool invuln = false;
     int abilitycount = 0;
+	bool sprinting = false;
+	float sprintFactor = 1.5f;
     DateTime wait;
     public GameObject plane;
     public Texture2D heightmap;
@@ -71,10 +73,15 @@ public class PlayerController : MonoBehaviour {
         }
         texture.Apply();*/
 
+		// Check if we're sprinting
+		if (Input.GetKey (KeyCode.LeftShift)) 
+			sprintFactor = 1.5f;
+		else
+			sprintFactor = 1;
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rigidbody2D.velocity = new Vector2(walkForce, rigidbody2D.velocity.y);
+            rigidbody2D.velocity = new Vector2(walkForce * sprintFactor, rigidbody2D.velocity.y);
             if (left &&!right)
             {
                 this.transform.Rotate(180, 0, 0);
@@ -97,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody2D.velocity = new Vector2(-1.0f * walkForce, rigidbody2D.velocity.y);
+			rigidbody2D.velocity = new Vector2(-1.0f * walkForce * sprintFactor, rigidbody2D.velocity.y);
             if (right &&!left)
             {
                 this.transform.Rotate(180, 0, 0);
@@ -297,8 +304,6 @@ public class PlayerController : MonoBehaviour {
         else
         {
             health = health - damage;
-            Debug.Log("player health");
-            Debug.Log(health);
         }
     }
     
