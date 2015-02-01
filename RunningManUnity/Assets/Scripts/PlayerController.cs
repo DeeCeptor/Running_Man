@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     float jumpForce = 10.0f;
     bool grounded = true;
     int health = 1000;
+    int healthMax = 1000;
     bool shield = false;
     bool left = false;
     bool right = true;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     public Texture2D heightmap;
     public Vector3 size = new Vector3(100, 10, 100);
     public Animator Anim;
+    Slider healthBar;
 
     Texture2D texture;
     public LayerMask mask = -1;
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Anim = gameObject.GetComponentInChildren<Animator>();
-        //texture = this.ren.material.mainTexture;
+        healthBar = GameObject.Find("Runner HP").GetComponent<Slider>();
 	}
     void OnGUI()
     {
@@ -48,30 +51,6 @@ public class PlayerController : MonoBehaviour {
             Anim.SetBool("isSliding", false);
         }
      
-       // RaycastHit hit;
-        //Debug.Log(Physics.Raycast(this.transform.position, new Vector3(0, 0, 1), out hit, 5, mask.value));
-      //  Debug.Log(hit.textureCoord);
-     //   RaycastHit2D ray = Physics2D.Raycast(this.transform.position, new Vector3(1, 0), 5, mask.value);
-    //    ray.transform
-        //Debug.Log(ray.transform);
-       // Debug.Log(hit.textureCoord);
-        /*
-        int y = 0;
-        while (y < texture.height)
-        {
-            int x = 0;
-            while (x < texture.width)
-            {
-                //Color color = ((x & y) ? Color.white : Color.gray);
-                Color color = 
-                texture.SetPixel(x, y, color);
-                ++x;
-
-                
-            }
-            ++y;
-        }
-        texture.Apply();*/
 
 		// Check if we're sprinting
 		if (Input.GetKey (KeyCode.LeftShift)) 
@@ -85,11 +64,6 @@ public class PlayerController : MonoBehaviour {
             if (left &&!right)
             {
                 this.transform.Rotate(180, 0, 0);
-                /*
-                Vector3 theScale = transform.localScale;
-                theScale.z *= -1;
-                transform.localScale = theScale;
-                 * */
             }
             right = true;
             left = false;
@@ -108,11 +82,6 @@ public class PlayerController : MonoBehaviour {
             if (right &&!left)
             {
                 this.transform.Rotate(180, 0, 0);
-             /*
-                Vector3 theScale = transform.localScale;
-                theScale.z *= -1;
-                transform.localScale = theScale;
-             * */
             }
             left = true;
             right = false;
@@ -204,6 +173,8 @@ public class PlayerController : MonoBehaviour {
         }
 
 
+        // Update health bar
+        healthBar.normalizedValue = (float) (health / healthMax);
 
 
         /******
