@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     public Vector3 size = new Vector3(100, 10, 100);
     public Animator Anim;
     Slider healthBar;
+    Slider shieldBar;
     public AudioClip scream;
 
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         Anim = gameObject.GetComponentInChildren<Animator>();
         healthBar = GameObject.Find("Runner HP").GetComponent<Slider>();
+        shieldBar = GameObject.Find("Shield Bar").GetComponent<Slider>();
 	}
     void OnGUI()
     {
@@ -178,7 +180,7 @@ public class PlayerController : MonoBehaviour {
 
         // Update health bar
         healthBar.normalizedValue = (float) ((float) health / (float) healthMax);
-
+        shieldBar.normalizedValue = (float)((float)shieldhealth / (float) 250);
 
         /******
          * CODE FOR TEXTURE SWITCHING BELOW

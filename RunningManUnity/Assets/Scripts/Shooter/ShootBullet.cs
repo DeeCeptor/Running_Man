@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShootBullet : ShooterAbility 
 {
-    public bool angledBullets = false;
+    public bool angledBullets = true;
 
     public ShootBullet(Shooter shooter)
         : base(shooter)
