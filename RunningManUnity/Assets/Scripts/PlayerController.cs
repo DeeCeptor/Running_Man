@@ -34,11 +34,14 @@ public class PlayerController : MonoBehaviour {
         GUI.Label(new Rect(10, 25, 100, 20), "" + health + "/1000");
     }
 	// Update is called once per frame
-	void Update () {
-        RaycastHit hit;
-       // Debug.Log(Physics.Raycast(this.transform.position, new Vector3(0, 0, 1), out hit, 5, mask.value));
+	void Update () 
+    {
+        Debug.Log("a");
+       // RaycastHit hit;
+        //Debug.Log(Physics.Raycast(this.transform.position, new Vector3(0, 0, 1), out hit, 5, mask.value));
       //  Debug.Log(hit.textureCoord);
-        Debug.Log(Physics2D.Raycast(this.transform.position, new Vector3(1, 0), 5, mask.value).transform);
+       // RaycastHit2D ray = Physics2D.Raycast(this.transform.position, new Vector3(1, 0), 5, mask.value);
+        //Debug.Log(ray.transform);
        // Debug.Log(hit.textureCoord);
         /*
         int y = 0;
