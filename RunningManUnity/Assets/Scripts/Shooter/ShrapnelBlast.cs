@@ -13,7 +13,7 @@ public class ShrapnelBlast : ShooterAbility
         this.iconString = "ShrapnelIconMine";
 
         usesLeft = 3;
-        damage = 5;
+        damage = 50;
     }
 
 

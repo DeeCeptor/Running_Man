@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour {
 
 
         // Update health bar
-        healthBar.normalizedValue = (float) (health / healthMax);
+        healthBar.normalizedValue = (float) ((float) health / (float) healthMax);
 
 
         /******

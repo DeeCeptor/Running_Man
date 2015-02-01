@@ -9,7 +9,7 @@ public class CreateMine : ShooterAbility {
         energyCost = 300;
         this.iconString = "ShooterIconMine";
 
-        damage = 10;
+        damage = 400;
     }
 
     protected override void CastAbility()

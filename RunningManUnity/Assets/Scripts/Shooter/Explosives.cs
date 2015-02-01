@@ -16,7 +16,7 @@ public class Explosives : ShooterAbility {
         this.usesLeft = 3;
         this.iconString = "ShooterExplosive";
 
-        damage = 100;
+        damage = 300;
     }
 
 
