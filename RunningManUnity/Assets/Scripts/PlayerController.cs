@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(walkForce, rigidbody2D.velocity.y);
             if (left &&!right)
             {
-                this.transform.Rotate(0, 90, 0);
+                this.transform.Rotate(180, 0, 0);
                 /*
                 Vector3 theScale = transform.localScale;
                 theScale.z *= -1;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(-1.0f * walkForce, rigidbody2D.velocity.y);
             if (right &&!left)
             {
-                this.transform.Rotate(0, 270, 0);
+                this.transform.Rotate(180, 0, 0);
              /*
                 Vector3 theScale = transform.localScale;
                 theScale.z *= -1;
