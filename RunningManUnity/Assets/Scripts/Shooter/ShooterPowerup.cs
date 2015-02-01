@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShooterPowerup : MonoBehaviour {
     Shooter shooter;
-    ShooterAbility[] potentialAbilities = new ShooterAbility[2];
+    ShooterAbility[] potentialAbilities = new ShooterAbility[4];
     ShooterAbility abilityGiven;
 
 	// Use this for initialization
@@ -14,7 +14,7 @@ public class ShooterPowerup : MonoBehaviour {
         potentialAbilities[0] = new Explosives(shooter);
         potentialAbilities[1] = new ShrapnelBlast(shooter);
         potentialAbilities[2] = new FasterCamera(shooter);
-        potentialAbilities[2] = new StopCamera(shooter);
+        potentialAbilities[3] = new StopCamera(shooter);
 
         abilityGiven = potentialAbilities[Random.Range(0, potentialAbilities.Length)];
 	}
