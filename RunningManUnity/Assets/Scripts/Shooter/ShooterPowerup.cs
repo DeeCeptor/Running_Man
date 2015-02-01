@@ -12,7 +12,7 @@ public class ShooterPowerup : MonoBehaviour {
         shooter = GameObject.Find("Shooter").GetComponent<Shooter>();
 
 	    // Determine what type of powerup this is
-        potentialAbilities[0] = new Explosives(shooter);
+        potentialAbilities[0] = new ShrapnelBlast(shooter);
         potentialAbilities[1] = new ShrapnelBlast(shooter);
         potentialAbilities[2] = new FasterCamera(shooter);
         potentialAbilities[3] = new StopCamera(shooter);

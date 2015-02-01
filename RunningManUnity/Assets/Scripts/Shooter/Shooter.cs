@@ -19,6 +19,7 @@ public class Shooter : MonoBehaviour
     Image rightClickText;
 
     Slider energyBar;   // Shows how much energy is remaining
+    Text rightClickUses;
 
     // Abilities
     ShooterAbility leftClickAbility;
@@ -43,6 +44,7 @@ public class Shooter : MonoBehaviour
 	{
 		runner = GameObject.Find("Runner");
         energyBar = GameObject.Find("EnergyBar").GetComponent<Slider>();
+        rightClickUses = GameObject.Find("Right Click Uses").GetComponent<Text>();
 
         shootBullet = new ShootBullet(this);
         spawnDog = new SpawnDog(this);
@@ -59,20 +61,21 @@ public class Shooter : MonoBehaviour
         abilityList.AddLast(createMine);
         abilityList.AddLast(spawnBarricade);
         abilityList.AddLast(explosives);
-        abilityList.AddLast(stopCamera);
-        abilityList.AddLast(fasterCamera);
-        abilityList.AddLast(shrapnelBlast);
+        //abilityList.AddLast(stopCamera);
+        //abilityList.AddLast(fasterCamera);
+        //abilityList.AddLast(shrapnelBlast);
         abilityList.AddFirst(spawnDog);
 
         leftClickAbility = shootBullet;
         middleClickAbility = createMine;
-        rightClickAbility = fasterCamera;
+        rightClickAbility = noRightClick;
 
         // Grab GUI icons
         middleClickText = GameObject.Find("Middle Click Icon").GetComponent<Image>();
         rightClickText = GameObject.Find("Right Click Icon").GetComponent<Image>();
 
         middleClickText.sprite = Resources.Load(middleClickAbility.iconString, typeof(Sprite)) as Sprite;
+        rightClickText.sprite = Resources.Load(rightClickAbility.iconString, typeof(Sprite)) as Sprite;
 	}
 
 	
@@ -119,6 +122,7 @@ public class Shooter : MonoBehaviour
 
         // Set the slider
         energyBar.normalizedValue = (float)curEnergy / maxEnergy;
+        rightClickUses.text = Mathf.Max(0, rightClickAbility.usesLeft) + "";
 	}
 
 
