@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Anim = gameObject.GetComponent<Animator>();
+        Anim = gameObject.GetComponentInChildren<Animator>();
 	}
     void OnGUI()
     {
@@ -37,9 +37,12 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(walkForce, rigidbody2D.velocity.y);
             if (left &&!right)
             {
+                this.transform.Rotate(0, 90, 0);
+                /*
                 Vector3 theScale = transform.localScale;
                 theScale.z *= -1;
                 transform.localScale = theScale;
+                 * */
             }
             right = true;
             left = false;
@@ -55,12 +58,16 @@ public class PlayerController : MonoBehaviour {
             rigidbody2D.velocity = new Vector2(-1.0f * walkForce, rigidbody2D.velocity.y);
             if (right &&!left)
             {
+                this.transform.Rotate(0, 270, 0);
+             /*
                 Vector3 theScale = transform.localScale;
                 theScale.z *= -1;
                 transform.localScale = theScale;
+             * */
             }
             left = true;
             right = false;
+
             
             Anim.SetBool("isRunning", true);
             Anim.SetBool("isLanding", false);
