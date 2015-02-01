@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour {
             invuln = false;
         }
 
+        Debug.Log(grounded);
 
         // Update health bar
         healthBar.normalizedValue = (float) ((float) health / (float) healthMax);
