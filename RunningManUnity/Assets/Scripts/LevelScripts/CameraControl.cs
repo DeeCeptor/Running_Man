@@ -11,6 +11,7 @@ public class CameraControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.Find("Runner");
+        scroll = player.transform.position.x;
 	}
 	
 	// Update is called once per frame

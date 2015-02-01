@@ -57,10 +57,16 @@ public class PlayerController : MonoBehaviour {
      
 
 		// Check if we're sprinting
-		if (Input.GetKey (KeyCode.LeftShift)) 
-			sprintFactor = 1.5f;
-		else
-			sprintFactor = 1;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sprintFactor = 1.5f;
+            Anim.speed = 1.4f;
+        }
+        else
+        {
+            sprintFactor = 1;
+            Anim.speed = 0.7f;
+        }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {

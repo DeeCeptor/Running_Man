@@ -5,6 +5,7 @@ public class ShooterPowerup : MonoBehaviour {
     Shooter shooter;
     ShooterAbility[] potentialAbilities = new ShooterAbility[4];
     ShooterAbility abilityGiven;
+    SpriteRenderer renderer;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,9 @@ public class ShooterPowerup : MonoBehaviour {
         potentialAbilities[3] = new StopCamera(shooter);
 
         abilityGiven = potentialAbilities[Random.Range(0, potentialAbilities.Length)];
+
+        renderer = this.GetComponent<SpriteRenderer>();
+        renderer.sprite = Resources.Load(abilityGiven.iconString, typeof(Sprite)) as Sprite;
 	}
 	
 	// Update is called once per frame
