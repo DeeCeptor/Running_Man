@@ -19,7 +19,7 @@ public class Blink : MonoBehaviour {
         powerinfo[0] = 0;
         powerinfo[1] = 3;
         otherCollider.gameObject.SendMessage("getPower", powerinfo);
-        Destroy(this);
+        Destroy(gameObject);
     }
 
 }
