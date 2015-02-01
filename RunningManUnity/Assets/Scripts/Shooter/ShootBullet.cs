@@ -26,6 +26,7 @@ public class ShootBullet : ShooterAbility
         DamageOnHit dmg = go.GetComponent<DamageOnHit>();
         dmg.damageOnHit = damage;
         dmg.destroyOnGround = true;
+        dmg.destroyOnAnyCollision = true;
 
         // Set speed of bullet
         Vector3 velocity = speed * Vector3.Normalize(shooter.runner.transform.position - shooter.getMousePosition());

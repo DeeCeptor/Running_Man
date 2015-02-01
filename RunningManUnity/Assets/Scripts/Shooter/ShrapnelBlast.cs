@@ -10,7 +10,7 @@ public class ShrapnelBlast : ShooterAbility
     {
         this.abilityName = "Shrapnel";
         energyCost = 300;
-        this.iconString = "ShrapnelIconMine";
+        this.iconString = "ShooterShrap";
 
         usesLeft = 3;
         damage = 50;

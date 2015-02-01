@@ -25,7 +25,8 @@ public class ExplosiveCountdown : MonoBehaviour {
         // Check if we should explode
         if (countdownTime <= 0)
         {
-            Debug.Log("Boom");
+            GameObject go = (GameObject)GameObject.Instantiate(Resources.Load("Explosion"), this.transform.position, Quaternion.identity);
+            go.transform.localScale *= 4;
 
             Vector2 dirOfPlayer = runner.transform.position - this.transform.position;
 
@@ -33,7 +34,6 @@ public class ExplosiveCountdown : MonoBehaviour {
             if (hits.transform != null && hits.transform.gameObject.tag == "Runner")
             {
                 hits.transform.gameObject.SendMessage("TakeHit", damage);
-                Debug.Log("Hit player");
             }
 
             Destroy(this.gameObject);
