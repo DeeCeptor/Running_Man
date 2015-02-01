@@ -180,6 +180,13 @@ public class PlayerController : MonoBehaviour {
             invuln = false;
         }
 
+        Debug.Log(health);
+        if (health < 1)
+        {
+            Debug.Log("her");
+            Application.LoadLevel("Lose");
+        }
+
         // Update health bar
         healthBar.normalizedValue = (float) ((float) health / (float) healthMax);
         shieldBar.normalizedValue = (float)((float)shieldhealth / (float) 250);
