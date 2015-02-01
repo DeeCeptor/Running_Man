@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     int health = 1000;
     bool shield = false;
     bool left = false;
-    bool right = false;
+    bool right = true;
     int shieldhealth = 0;
     int Ability = 1;
     bool invuln = false;
@@ -46,12 +46,14 @@ public class PlayerController : MonoBehaviour {
             }
             right = true;
             left = false;
-            Anim.SetBool("isRunning", true);
-            Anim.SetBool("isLanding", false);
-            Anim.SetBool("isJumping", false);
-            Anim.SetBool("isIdle", false);
-            Anim.SetBool("isSliding", false);
-
+            if (grounded == true)
+            {
+                Anim.SetBool("isRunning", true);
+                Anim.SetBool("isLanding", false);
+                Anim.SetBool("isJumping", false);
+                Anim.SetBool("isIdle", false);
+                Anim.SetBool("isSliding", false);
+            }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -68,24 +70,29 @@ public class PlayerController : MonoBehaviour {
             left = true;
             right = false;
 
-            
-            Anim.SetBool("isRunning", true);
-            Anim.SetBool("isLanding", false);
-            Anim.SetBool("isJumping", false);
-            Anim.SetBool("isIdle", false);
-            Anim.SetBool("isSliding", false);
-
+            if (grounded == true)
+            {
+                Anim.SetBool("isRunning", true);
+                Anim.SetBool("isLanding", false);
+                Anim.SetBool("isJumping", false);
+                Anim.SetBool("isIdle", false);
+                Anim.SetBool("isSliding", false);
+            }
         }
         else
         {
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
-            Anim.SetBool("isRunning", false);
-            Anim.SetBool("isLanding", false);
-            Anim.SetBool("isJumping", false);
-            Anim.SetBool("isIdle", true);
-            Anim.SetBool("isSliding", false);
-        }
-
+            if (grounded == true)
+            {
+                Anim.SetBool("isRunning", false);
+                Anim.SetBool("isLanding", false);
+                Anim.SetBool("isJumping", false);
+                Anim.SetBool("isIdle", true);
+                Anim.SetBool("isSliding", false);
+                
+            }
+           }
+        Debug.Log(grounded);
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("jumping");
@@ -102,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            if (grounded)
+            if (grounded == true)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -0.01f * jumpForce); //make it more responsive, terminate jump on release
                 grounded = false;
