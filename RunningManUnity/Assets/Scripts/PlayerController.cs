@@ -24,9 +24,12 @@ public class PlayerController : MonoBehaviour {
     public Texture2D heightmap;
     public Vector3 size = new Vector3(100, 10, 100);
     public Animator Anim;
+    BoxCollider2D collider;
     Slider healthBar;
     Slider shieldBar;
+    bool crouching = false;
     public AudioClip scream;
+    float waitTimer = 0;
 
 
     Texture2D texture;
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour {
         Anim = gameObject.GetComponentInChildren<Animator>();
         healthBar = GameObject.Find("Runner HP").GetComponent<Slider>();
         shieldBar = GameObject.Find("Shield Bar").GetComponent<Slider>();
+        collider = this.GetComponent<BoxCollider2D>();
 	}
 
 	// Update is called once per frame
@@ -160,9 +164,23 @@ public class PlayerController : MonoBehaviour {
                 Anim.SetBool("isJumping", false);
                 Anim.SetBool("isIdle", false);
                 Anim.SetBool("isSliding", true);
+
+                if (!crouching)
+                {
+                    collider.size = collider.size / 2;
+                    collider.center = new Vector2(collider.center.x + 7, collider.center.y);
+                }
+                crouching = true;
             }
             rigidbody2D.AddForce(new Vector2(rigidbody2D.velocity.x, -1.5f*jumpForce));
         }
+        else if (crouching)
+        {
+            crouching = false;
+            collider.size *= 2;
+            collider.center = new Vector2(collider.center.x - 7, collider.center.y);
+        }
+        
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -175,10 +193,17 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (DateTime.Now == wait && invuln == true)
+        if (invuln)
+        {
+            waitTimer -= Time.deltaTime;
+
+            if (waitTimer < 0)
+                invuln = false;
+        }
+        /*if (DateTime.Now == wait && invuln == true)
         {
             invuln = false;
-        }
+        }*/
 
         Debug.Log(health);
         if (health < 1)
@@ -261,7 +286,7 @@ public class PlayerController : MonoBehaviour {
                  * This one is a bit weird due to datetime reqs, basically set the time to turn it off here
                  * then in update do the check for when to turn off invulnerability
                  */
-                wait = DateTime.Now.AddSeconds(2);
+                waitTimer = 2.0f;
                 invuln = true;
                 
                 break;
