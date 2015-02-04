@@ -11,8 +11,8 @@ public class Menu : MonoBehaviour
     int buttonHeight;
 
     private string controlsString = "<b><color=red>Runner</color></b>\n Movement: Arrow keys \n Sprint: Shift \n Space: Activate special \n Specials: Shield: Temporary invulnerability for 2 seconds Blink: Short range  " +
-        "\n Left Control: Punch \n W or Spacebar: Jump \n\n " +
-            "<b><color=white>Player Two</color></b>\n Use the mouse to kill the runner before reaching the end \n Left Mouse: Shoot Bullet " +
+        "\n\n " +
+            "<b><color=white>Enforcement</color></b>\n Use the mouse to kill the runner before reaching the end \n Left Mouse: Shoot Bullet " +
             "\n Middle Mouse: Middle Power \n Scroll Wheel: Change Middle Mouse Power\n Right Mouse: Use Pickup Power \n\n" +
             " \n Left click on powerups to gain Right Mouse abilities \n Right mouse abilities have limited uses \n You cannot click when too close to the Runner" +
             " <b><color=white>Created by:\n Michael Long \n William Selby \n Austin Black \n Mitchell Craig</color></b>";
